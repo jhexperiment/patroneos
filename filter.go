@@ -94,7 +94,7 @@ func logFailure(message string, w http.ResponseWriter, r *http.Request, statusCo
 			log.Print(err)
 		}
 	}
-	log.Printf("Failure: %s %s", remoteHost, message)
+	log.Printf("Failure: %s %s %s", remoteHost, message, r.URL.Path)
 	if w != nil {
 		errorBody, _ := json.Marshal(ErrorMessage{Message: message, Code: statusCode})
 		w.Header().Add("X-REJECTED-BY", "patroneos")
